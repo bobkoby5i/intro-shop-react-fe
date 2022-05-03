@@ -2,6 +2,7 @@ import React from "react";
 import UserService from "../../services/user.service";
 import {User} from "../../models/user"
 import userService from "../../services/user.service";
+import './LoginPage.css';
 
 class LoginPage extends React.Component {
     constructor(props){
