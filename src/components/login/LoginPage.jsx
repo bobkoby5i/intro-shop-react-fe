@@ -1,7 +1,7 @@
 import React from "react";
 import UserService from "../../services/user.service";
 import {User} from "../../models/user"
-import userService from "../../services/user.service";
+
 import './LoginPage.css';
 
 class LoginPage extends React.Component {
@@ -38,7 +38,7 @@ class LoginPage extends React.Component {
          this.setSatet({loading:true});
          UserService.login(user)
             .then(data => {
-                    this.props.push("/")
+                    this.props.history.push("/")
                 }, error => {
                     this.setState({
                         errorMessage:"Username or password is not valid.",
@@ -58,7 +58,7 @@ class LoginPage extends React.Component {
                             <strong>Error!</strong> {errorMessage}
                         </div>
                     }
-                    <form name="form" onSubmit={(e) => this.handleChange(e)}>
+                    <form name="form" onSubmit={(e) => this.handleLogin(e)}>
                         <div className={'form-group' + (submitted && user.username ? 'has-error' : ''  )}>
                             <label htmlFor="username">Username</label>
                             <input type="text" className="form-control" name="username" value={user.username} onChange={(e)=>this.handleChange(e)}/>
