@@ -7,7 +7,7 @@ const headers   = {"Content-Type":"application/json; charset=UTF-8"}
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 
 class UserService {
-    get currentuserValue(){
+    get currentUserValue(){
         return currentUserSubject.value;
     }
 
@@ -15,25 +15,21 @@ class UserService {
         return this.currentUserSubject.asObservable();
     }
 
-    login(user) {
+    async login(user) {
         //btoa Basic64 encoding use buf.toString('base64') instead
         const headers = {
             authorization: 'Basic ' + btoa(user.username + ":" + user.password)
         };
 
-        return axios.get(`${API_URL}/login`, {headers: headers} )
-            .then(response => {
-                localStorage.setItem('currentUser', JSON.stringify(response.data));
-                currentUserSubject.next(response.data)
-            });
+        const response = await axios.get(`${API_URL}/login`, { headers: headers });
+        localStorage.setItem('currentUser', JSON.stringify(response.data));
+        currentUserSubject.next(response.data);
     }
 
-    logout() {
-        return axios.post(`${API_URL}/logout`, {})
-            .then(response => {
-                localStorage.removeItem('currentUser');
-                currentUserSubject.next(null);
-            })
+    async logout() {
+        const response = await axios.post(`${API_URL}/logout`, {});
+        localStorage.removeItem('currentUser');
+        currentUserSubject.next(null);
     }
 
     register(user) {
@@ -47,10 +43,7 @@ class UserService {
 
     purchaseProduct(transaction){
         return axios.post(API_URL, "purchase", JSON.stringify(transaction),{headers: headers});
-
     }
-
-
 }
 
 export default new UserService();
