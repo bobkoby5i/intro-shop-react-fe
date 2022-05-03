@@ -4,7 +4,7 @@ import "./RegisterPage.css";
 import { User } from "../../models/user"
 
 class RegisterPage extends React.Component {
-    constructot(props) {
+    constructor(props) {
         super(props);
         if (UserService.currentUserValue){
             this.props.history.push('/');
