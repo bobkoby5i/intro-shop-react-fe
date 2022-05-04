@@ -1,6 +1,6 @@
 import React from "react";
 import UserService from "../../services/user.service";
-import "./ProfilePage.css";
+
 
 
 class ProfilePage extends React.Component {

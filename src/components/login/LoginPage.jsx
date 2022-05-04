@@ -8,7 +8,7 @@ class LoginPage extends React.Component {
     constructor(props){
         super(props);
 
-        if (userService.currentUserVale){
+        if (UserService.currentUserVale){
             this.props.histry.push('/')
         }
 
@@ -74,7 +74,7 @@ class LoginPage extends React.Component {
                             }
                         </div>       
                         <div className="form-group">
-                            <button className="btn btn-lg btn-primary btn-block btn-signin form-submit-button" diabled={loading}>Login</button>
+                            <button className="btn btn-lg btn-primary btn-block btn-signin form-submit-button" disabled={loading}>Login</button>
                         </div>                 
                     </form>
                 </div>

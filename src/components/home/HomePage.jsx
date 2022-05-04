@@ -1,6 +1,6 @@
 import React from "react";
 import UserService from "../../services/user.service";
-import "./HomePahe.css";
+
 import { User } from "../../models/user"
 import { Transaction } from "../../models/transaction"
 

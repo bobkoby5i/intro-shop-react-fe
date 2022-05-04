@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {BehaviorSubject} from rxjs;
+import {BehaviorSubject} from "rxjs";
 
 const API_URL   = (process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080') + "/api/user";
 const headers   = {"Content-Type":"application/json; charset=UTF-8"}

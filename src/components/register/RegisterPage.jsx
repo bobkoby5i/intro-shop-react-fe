@@ -91,7 +91,7 @@ class RegisterPage extends React.Component {
                        </div>       
 
                        <div className="form-group">
-                           <button className="btn btn-lg btn-primary btn-block btn-signin form-submit-button" diabled={loading}>Register</button>
+                           <button className="btn btn-lg btn-primary btn-block btn-signin form-submit-button" disabled={loading}>Register</button>
                        </div>                 
                    </form>
                </div>
