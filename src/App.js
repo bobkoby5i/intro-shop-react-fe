@@ -11,6 +11,7 @@ import {HomePage} from './components/home/HomePage';
 import {LoginPage} from './components/login/LoginPage';
 import {RegisterPage} from './components/register/RegisterPage';
 import {ProfilePage} from './components/profile/ProfilePage';
+import {AboutPage} from './components/about/AboutPage';
 
 import {Role} from './models/role';
 
@@ -45,6 +46,7 @@ class App extends React.Component{
                   <Route exact path="/home" element={<HomePage/>}/> */}
                   <Route exact path="/login" element={<LoginPage/>}/>
                   <Route exact path="/register" element={<RegisterPage/>}/>
+                  <Route exact path="/about" element={<AboutPage/>}/>
                 </Routes>
             </div>
             <header className="App-header">
