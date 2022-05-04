@@ -7,6 +7,7 @@ import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {createBrowserHistory} from 'history';
 
 
+import {NavBar} from './components/navbar/NavBar';
 import {HomePage} from './components/home/HomePage';
 import {LoginPage} from './components/login/LoginPage';
 import {RegisterPage} from './components/register/RegisterPage';
@@ -38,7 +39,7 @@ class App extends React.Component{
       <div className="App">
         <Router>
           <Fragment>
-            {/* <Navbar></Navbar> */}
+            <NavBar></NavBar>
 
             <div className="container">
               <Routes>
