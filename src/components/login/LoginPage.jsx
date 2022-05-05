@@ -16,7 +16,7 @@ class LoginPage1 extends React.Component {
         }
 
         this.state = {
-            user: new User('',''),
+            user: new User('guest@gmail.com','koby5i-intro-shop-react-fe'),
             errorMessage: '',
             submited: false,
             loading: false,
@@ -54,6 +54,7 @@ class LoginPage1 extends React.Component {
 
      render(){
          const {user, submitted, loading, errorMessage } = this.state;
+
          return (
              <div className = "col-md-12">
                 <div className="card card-container">
