@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import UserService from "../../services/user.service";
 import './NavBar.css';
 
 
@@ -9,7 +10,7 @@ const NavBar = ({title, icon}) => {
 
     const onLogout =  (e) => {
         e.preventDefault();
-        // logout();
+        UserService.logout();
         // clearContacts();
     }
 
@@ -31,6 +32,10 @@ const NavBar = ({title, icon}) => {
                 <li>
                     <Link to='/login'><i className="fas fa-sign-in-alt hide-sm"></i>{" "}Login</Link>
                 </li>
+                <li><a onClick={onLogout} href="#!">
+                    <i className="fas fa-sign-out-alt"></i> <span className="hide-sm">Logout {true && "(BOB)"}</span>
+                </a>
+            </li>                
         </>
     );    
     let isAuthenticated=false;
@@ -42,6 +47,9 @@ const NavBar = ({title, icon}) => {
                 <Link to='/'>{title}</Link>
             </h1>
             <ul>
+                <li>
+                    <Link to='/admin'>Admin</Link>
+                </li>
                 <li>
                     <Link to='/home'>Home</Link>
                 </li>

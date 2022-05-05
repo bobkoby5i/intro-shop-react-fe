@@ -12,14 +12,17 @@ class UserService {
     }
 
     get currentUser(){
-        return this.currentUserSubject.asObservable();
+        return currentUserSubject.asObservable();
     }
+
 
     async login(user) {
         //btoa Basic64 encoding use buf.toString('base64') instead
         const headers = {
             authorization: 'Basic ' + btoa(user.username + ":" + user.password)
         };
+
+        console.log("UserService.login")
 
         const response = await axios.get(`${API_URL}/login`, { headers: headers });
         localStorage.setItem('currentUser', JSON.stringify(response.data));

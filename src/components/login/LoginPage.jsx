@@ -1,15 +1,18 @@
 import React from "react";
 import UserService from "../../services/user.service";
+import {useNavigate} from 'react-router-dom';
+//import { useNavigation } from '@react-navigation/native'; // TODO co to za rzonica ? 
 import {User} from "../../models/user"
 
 import './LoginPage.css';
 
-class LoginPage extends React.Component {
+class LoginPage1 extends React.Component {
     constructor(props){
         super(props);
 
         if (UserService.currentUserVale){
-            this.props.histry.push('/')
+            //this.props.histry.push('/')
+            this.props.navigation('/');
         }
 
         this.state = {
@@ -30,15 +33,17 @@ class LoginPage extends React.Component {
 
     handleLogin(e) {
          e.preventDefault();
+         console.log("Inside handleLogin")
          this.setState({submited: true});
          const {user} = this.state;
-         if(user.username && user.password) {
+         if(!user.username && !user.password) {
              return;
          }
-         this.setSatet({loading:true});
+         this.setState({loading:true});
          UserService.login(user)
             .then(data => {
-                    this.props.history.push("/")
+                    //this.props.history.push("/")
+                    this.props.navigation('/');
                 }, error => {
                     this.setState({
                         errorMessage:"Username or password is not valid.",
@@ -83,4 +88,15 @@ class LoginPage extends React.Component {
      }
 }
 
-export { LoginPage }
+// export { LoginPage }
+
+// Wrap and export
+const LoginPage = (props) => {
+    //const navigation = useNavigation(); // TODO co to za roznica ? !
+    const navigation = useNavigate();
+  
+    return <LoginPage1 {...props} navigation={navigation} />;
+}
+
+
+export {LoginPage}

@@ -1,13 +1,17 @@
 import React from "react";
 import UserService from "../../services/user.service";
+import {useNavigate} from 'react-router-dom';
+//import { useNavigation } from '@react-navigation/native';
 import "./RegisterPage.css";
 import { User } from "../../models/user"
 
-class RegisterPage extends React.Component {
+class RegisterPage1 extends React.Component {
+    //const navigate = useNavigate();
     constructor(props) {
         super(props);
         if (UserService.currentUserValue){
-            this.props.history.push('/');
+            //this.props.history.push('/'); TODO tak sie juz nie ppisze
+            this.props.navigation('/');
         }
 
         this.state = {
@@ -32,11 +36,12 @@ class RegisterPage extends React.Component {
         if(!(user.username && user.password && user.name)) {
             return;
         }
-        this.setSatet({loading:true});
+        this.setState({loading:true});
         UserService.register(user)
            .then(
                 data => {
-                   this.props.history.push("/login")
+                //    this.props.history.push("/login")
+                   this.props.navigation('/login');
                 }, 
                 error => {
                     if(error.response.status === 409) {
@@ -55,6 +60,7 @@ class RegisterPage extends React.Component {
     }
 
     render(){
+        const { navigation } = this.props;
         const {user, submitted, loading, errorMessage } = this.state;
         return (
             <div className = "col-md-12">
@@ -100,4 +106,29 @@ class RegisterPage extends React.Component {
     }
 }
 
-export  {RegisterPage}
+// Wrap and export
+const RegisterPage = (props) => {
+    //const navigation = useNavigation(); // TODO co to za roznica ? !
+    const navigation = useNavigate();
+  
+    return <RegisterPage1 {...props} navigation={navigation} />;
+}
+
+
+export {RegisterPage}
+
+// ęxample: TODO why does not wor export default function(props) { 
+
+// class MyBackButton extends React.Component {
+//     render() {
+//       // Get it from props
+//       const { navigation } = this.props;
+//     }
+//   }
+  
+//   // Wrap and export
+//   export default function(props) {
+//     const navigation = useNavigation();
+  
+//     return <MyBackButton {...props} navigation={navigation} />;
+//   }
